@@ -1,4 +1,4 @@
-package com.woowacourse.zzinbros.demo;
+package com.woowacourse.zzinbros.learningtest;
 
 import com.woowacourse.zzinbros.post.service.PostService;
 import org.springframework.stereotype.Controller;
