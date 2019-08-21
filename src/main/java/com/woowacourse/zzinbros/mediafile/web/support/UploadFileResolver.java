@@ -19,7 +19,9 @@ public class UploadFileResolver implements HandlerMethodArgumentResolver {
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         MultipartHttpServletRequest request = (MultipartHttpServletRequest) webRequest.getNativeRequest();
-        MultipartFile multipartFile = request.getFile("andole");
-        return new UploadFile(multipartFile);
+        MultipartFile multipartFile = request.getFile("feed-image");
+
+        return new UploadToLocal(multipartFile);
+
     }
 }

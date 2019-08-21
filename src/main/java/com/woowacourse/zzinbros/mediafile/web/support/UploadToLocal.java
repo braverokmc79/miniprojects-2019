@@ -8,15 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-public class UploadFile {
-    private static final Logger logger = LoggerFactory.getLogger(UploadFile.class);
-    private static final String PATH = "/Users/jyk/Desktop/WooWa/miniprojects-2019/src/main/resources/static/images/";
+public class UploadToLocal implements UploadTo {
+    private static final Logger logger = LoggerFactory.getLogger(UploadToLocal.class);
+    private static final String PATH = "/tmp/";
     private MultipartFile file;
 
-    public UploadFile() {
-    }
-
-    public UploadFile(MultipartFile file) {
+    public UploadToLocal(MultipartFile file) {
         this.file = file;
     }
 
@@ -28,7 +25,8 @@ public class UploadFile {
         this.file = file;
     }
 
-    private String getExtension() {
+    @Override
+    public String getExtension() {
         String originName = file.getOriginalFilename();
         if (originName == null) {
             throw new IllegalArgumentException();
@@ -41,7 +39,7 @@ public class UploadFile {
         return originName.substring(lastIndexOf);
     }
 
-
+    @Override
     public String save() {
         try {
             String saveName = hashFileName() + getExtension();

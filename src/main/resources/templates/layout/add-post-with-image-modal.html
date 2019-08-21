@@ -6,9 +6,9 @@
 
             </div>
             <div class="modal-body">
-                <form action="/posts-with-images" method="POST" enctype="multipart/form-data" id="feed-add-form">
+                <form action="/posts-with-images" enctype="multipart/form-data" id="feed-add-form" method="POST">
                     <input class="resize-none form-control border bottom resize-none" name="contents" type="textarea">
-                    <input id="feed-image" name="andole" style="display:none" type="file">
+                    <input id="feed-image" name="feed-image" style="display:none" type="file">
                 </form>
                 <img id="feed-image-preview" src="#" style="visibility:hidden; max-width: 460px">
             </div>

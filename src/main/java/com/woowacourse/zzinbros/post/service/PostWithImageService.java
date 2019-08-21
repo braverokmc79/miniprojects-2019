@@ -2,7 +2,7 @@ package com.woowacourse.zzinbros.post.service;
 
 import com.woowacourse.zzinbros.mediafile.MediaFile;
 import com.woowacourse.zzinbros.mediafile.MediaFileRepository;
-import com.woowacourse.zzinbros.mediafile.web.support.UploadFile;
+import com.woowacourse.zzinbros.mediafile.web.support.UploadTo;
 import com.woowacourse.zzinbros.post.domain.Post;
 import com.woowacourse.zzinbros.post.domain.repository.PostRepository;
 import com.woowacourse.zzinbros.post.dto.PostRequestDto;
@@ -29,10 +29,10 @@ public class PostWithImageService {
         this.mediaFileRepository = mediaFileRepository;
     }
 
-    public Post add(PostRequestDto dto, long userId, UploadFile uploadFile) {
+    public Post add(PostRequestDto dto, long userId, UploadTo uploadToLocal) {
         User user = userService.findUserById(userId);
         Post post = dto.toEntity(user);
-        MediaFile mediaFile = mediaFileRepository.save(new MediaFile(uploadFile.save()));
+        MediaFile mediaFile = mediaFileRepository.save(new MediaFile(uploadToLocal.save()));
         post.addMediaFiles(mediaFile);
         postRepository.save(post);
         return post;
