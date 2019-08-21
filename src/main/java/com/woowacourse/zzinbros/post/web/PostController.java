@@ -23,7 +23,8 @@ public class PostController {
     }
 
     @PostMapping
-    public Post create(@RequestBody PostRequestDto dto, UserSession userSession) {
+    public Post create(@RequestBody PostRequestDto dto,
+                       UserSession userSession) {
         return postService.add(dto, userSession.getId());
     }
 
