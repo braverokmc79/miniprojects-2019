@@ -58,6 +58,11 @@ public class FriendService {
         return this.friendToUserResponseDto(friendRepository.findAllByOwner(owner));
     }
 
+    public Set<User> findFriendEntitiesByUser(final long id) {
+        User owner = userService.findUserById(id);
+        return friendToUser(friendRepository.findAllByOwner(owner));
+    }
+
     public Set<UserResponseDto> findFriendsByUser(UserResponseDto loginUserDto) {
         return findFriendsByUserId(loginUserDto.getId());
     }
@@ -88,6 +93,12 @@ public class FriendService {
         return friends.stream()
                 .map(friend -> friend.getSlave())
                 .map(user -> new UserResponseDto(user.getId(), user.getName(), user.getEmail()))
+                .collect(Collectors.toSet());
+    }
+
+    public Set<User> friendToUser(Set<Friend> friends) {
+        return friends.stream()
+                .map(friend -> friend.getSlave())
                 .collect(Collectors.toSet());
     }
 
