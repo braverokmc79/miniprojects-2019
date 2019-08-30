@@ -12,6 +12,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import static com.woowacourse.zzinbros.post.domain.DisplayStrategy.ALL;
+
 @Entity
 @DynamicInsert
 public class Post extends BaseEntity {
@@ -38,14 +40,14 @@ public class Post extends BaseEntity {
     @ColumnDefault("0")
     private Integer countOfShared;
 
+    @Enumerated(EnumType.STRING)
+    private DisplayStrategy displayStrategy;
+
     public Post() {
     }
 
     public Post(String contents, User author) {
-        this.contents = contents;
-        this.author = author;
-        this.countOfLike = 0;
-        this.countOfShared = 0;
+        this(contents, author, ALL);
     }
 
     public Post(String contents, User author, Post sharedPost) {
@@ -54,6 +56,15 @@ public class Post extends BaseEntity {
         this.sharedPost = sharedPost;
         this.countOfLike = 0;
         this.countOfShared = 0;
+        this.displayStrategy = ALL;
+    }
+
+    public Post(String contents, User author, DisplayStrategy displayStrategy) {
+        this.contents = contents;
+        this.author = author;
+        this.countOfLike = 0;
+        this.countOfShared = 0;
+        this.displayStrategy = displayStrategy;
     }
 
     public Post update(Post post) {
@@ -121,5 +132,9 @@ public class Post extends BaseEntity {
 
     public Integer getCountOfShared() {
         return countOfShared;
+    }
+
+    public DisplayStrategy getDisplayStrategy() {
+        return displayStrategy;
     }
 }
