@@ -87,6 +87,7 @@ public class PostService {
             posts.addAll(postRepository.findAllByDisplayStrategyAndAuthor(DisplayStrategy.FRIEND, friend, sort));
         }
 
+        posts.addAll(postRepository.findAllByDisplayStrategyAndAuthor(DisplayStrategy.FRIEND, loginUser, sort));
         posts.addAll(postRepository.findAllByDisplayStrategyAndAuthor(DisplayStrategy.ONLY_ME, loginUser, sort));
 
         posts.sort(Comparator.comparing(Post::getCreateDateTime).reversed());
