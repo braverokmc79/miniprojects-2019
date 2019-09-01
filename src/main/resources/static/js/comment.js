@@ -6,7 +6,9 @@ const CommentApp = (function() {
                 <img class="thumb-img img-circle" src="${comment.profile}" alt="">
                 <div class="info">
                     <div class="bg-lightgray border-radius-18 padding-10 max-width-100">
-                        <a href="" class="title text-bold inline-block text-link-color">${comment.authorName}</a>
+                        <a href="/posts?author=${comment.authorId}" class="title text-bold inline-block text-link-color">
+                            ${comment.authorName}
+                        </a>
                         <span class="comment-contents">${comment.contents}</span>
                     </div>
                     <a aria-expanded="false" class="pointer absolute top-0 right-0" data-toggle="dropdown">
@@ -64,7 +66,7 @@ const CommentApp = (function() {
                             commentItems.insertAdjacentHTML('beforeend', commentTemplate(comment));
                         }
                         updateTimeStrings();
-                })
+                    })
             }
         };
 
@@ -72,21 +74,21 @@ const CommentApp = (function() {
             const commentAddBtns = document.getElementsByClassName('comment-add-btn');
 
             Array.from(commentAddBtns)
-                 .map(commentAddBtn => commentAddBtn.addEventListener('click', commentService.addComment));
+                .map(commentAddBtn => commentAddBtn.addEventListener('click', commentService.addComment));
         };
 
         const editComment = function() {
             Array.from(commentsItems)
-                 .map(commentItem => commentItem.addEventListener('click', commentService.editMode));
+                .map(commentItem => commentItem.addEventListener('click', commentService.editMode));
             Array.from(commentsItems)
-                 .map(commentItem => commentItem.addEventListener('click', commentService.cancelEditMode));
+                .map(commentItem => commentItem.addEventListener('click', commentService.cancelEditMode));
             Array.from(commentsItems)
-                 .map(commentItem => commentItem.addEventListener('click', commentService.editComment));
+                .map(commentItem => commentItem.addEventListener('click', commentService.editComment));
         };
 
         const deleteComment = function() {
             Array.from(commentsItems)
-                 .map(commentItem => commentItem.addEventListener('click', commentService.deleteComment));
+                .map(commentItem => commentItem.addEventListener('click', commentService.deleteComment));
         };
 
         const init = function() {
@@ -110,13 +112,13 @@ const CommentApp = (function() {
             const contents = commentTextArea.value;
 
             Api.post(`posts/${postId}/comments`, {contents})
-               .then(res => res.json())
-               .then(createdComment => {
-                   const comments = event.target.closest(".comment").querySelector(".comment-items");
-                   comments.insertAdjacentHTML('beforeend', commentTemplate(createdComment));
-                   commentTextArea.value = "";
-                   updateTimeStrings();
-               });
+                .then(res => res.json())
+                .then(createdComment => {
+                    const comments = event.target.closest(".comment").querySelector(".comment-items");
+                    comments.insertAdjacentHTML('beforeend', commentTemplate(createdComment));
+                    commentTextArea.value = "";
+                    updateTimeStrings();
+                });
         };
 
         const editMode = function(event) {
@@ -179,11 +181,11 @@ const CommentApp = (function() {
             const clicked = event.target.closest('a');
             if ((clicked !== null) && clicked.classList.contains('comment-delete-btn')) {
                 Api.delete(`posts/${postId}/comments/${commentId}`)
-                   .then(res => {
-                       if (res.ok) {
-                           commentItem.remove();
-                       }
-                   })
+                    .then(res => {
+                        if (res.ok) {
+                            commentItem.remove();
+                        }
+                    })
             }
         };
 
@@ -201,7 +203,7 @@ const CommentApp = (function() {
         commentController.init();
     };
 
-    return { init };
+    return {init};
 })();
 
 CommentApp.init();
