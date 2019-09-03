@@ -16,8 +16,7 @@
                 break;
         }
 
-        const url = document.location.href;
-        Api.post(`${url}/posts`, { "contents": contents, "displayStrategy": displayStrategy })
+        Api.post("/posts", { "contents": contents, "displayStrategy": displayStrategy })
             .then(res => {
                 if (res.redirected) {
                     window.location.href = res.url
