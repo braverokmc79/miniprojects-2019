@@ -1,5 +1,39 @@
 # Miniproject - 우테코북
 
+## 기능 목록
+
+- 회원 관련 기능
+   * 회원 가입
+     * 프로필 사진 추가
+   * 회원 수정
+   * 회원 탈퇴
+   * 회원 조회
+   * 검색 기능 
+- 게시글 관련 기능
+   * 게시글 생성
+     * 이미지 등록 
+     * 공개 제한 기능 ('전체 공개', '친구만 보기', '나만 보기')
+   * 게시글 수정
+   * 게시글 조회
+   * 게시글 삭제
+   * 좋아요 기능
+   * 공유 기능
+      * 공개 제한 기능 
+- 친구 관련 기능
+   * 친구 요청
+   * 친구 요청 목록 조회
+     * 친구 요청 수락, 거절 
+   * 친구 목록 조회
+   * 친구 취소
+- 알림 기능
+   * 친구 요청 알림
+   * 친구가 글을 썼을 때 알림
+- 댓글 기능
+   * 댓글 생성
+   * 댓글 조회
+   * 댓글 수정
+
+
 ## 기술 스택
 
 ### back
@@ -14,3 +48,6 @@
 
 
 ### front
+| <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxdUqaOLDhU39hccLoUQQLe0fcwvhq-O3JOv1UaHIhkMdIeN8t" width=200/> | <img src="https://www.thymeleaf.org/images/thymeleaf.png" width=200/> |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|        [Bootstrap](https://getbootstrap.com/)        |       [Thymleaf](https://www.thymeleaf.org/)        |
